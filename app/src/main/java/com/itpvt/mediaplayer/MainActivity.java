@@ -87,7 +87,7 @@ while(cur.moveToNext())
 
 
 
-VideoAdapter adapter= new VideoAdapter(getApplicationContext(),arraycycle);
+VideoAdapter adapter= new VideoAdapter(getApplicationContext(),arraycycle,MainActivity.this);
 
 recyclerView.setAdapter(adapter);
 

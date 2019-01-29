@@ -1,5 +1,6 @@
 package com.itpvt.mediaplayer;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,11 +24,13 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder>{
 
 Context context;
 ArrayList<VideoModel> arraylistvid;
+Activity activity;
 
-public  VideoAdapter(Context context, ArrayList<VideoModel>arraylistvid ){
+public  VideoAdapter(Context context, ArrayList<VideoModel>arraylistvid , Activity activity){
 
     this.context=context;
     this.arraylistvid=arraylistvid;
+    this.activity=activity;
 
 
 
@@ -42,7 +45,7 @@ public  VideoAdapter(Context context, ArrayList<VideoModel>arraylistvid ){
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
         Glide.with(context).load("file://" + arraylistvid.get(position).getStrthumb())
                 .skipMemoryCache(false)
@@ -54,7 +57,9 @@ public  VideoAdapter(Context context, ArrayList<VideoModel>arraylistvid ){
             @Override
             public void onClick(View view) {
 
-                Intent i= new Intent()
+                Intent i = new Intent(context, VideoPlay.class);
+                i.putExtra("video",arraylistvid.get(position).getStrpath());
+                activity.startActivity(i);
 
 
             }
