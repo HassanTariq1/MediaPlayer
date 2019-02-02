@@ -7,9 +7,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.SeekBar;
+import com.swipper.library.Swipper;
 import android.widget.VideoView;
 
-public class VideoPlay extends AppCompatActivity {
+public class VideoPlay extends Swipper {
 
     VideoView videoView;
     ImageView imgg;
@@ -39,12 +40,18 @@ public class VideoPlay extends AppCompatActivity {
         urls = getIntent().getStringExtra("video");
         videoView.setVideoPath(urls);
 
-        mediaC  = new MediaController(this);
-
-        videoView.setMediaController(mediaC);
-        mediaC.setAnchorView(videoView);
+        MediaController mediaController = new MediaController(this);
+        videoView.setMediaController(mediaController);
+        mediaController.setAnchorView(videoView);
 
         videoView.start();
+
+        Brightness(Orientation.CIRCULAR);
+        Volume(Orientation.VERTICAL);
+        Seek(Orientation.HORIZONTAL, videoView);
+        set(this);
+
+
         is_play = true;
         imgg.setImageResource(R.drawable.pause);
 
