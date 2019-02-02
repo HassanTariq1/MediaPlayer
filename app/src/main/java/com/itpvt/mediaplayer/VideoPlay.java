@@ -3,7 +3,9 @@ package com.itpvt.mediaplayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.SeekBar;
 import android.widget.VideoView;
 
@@ -14,6 +16,7 @@ public class VideoPlay extends AppCompatActivity {
     SeekBar seekBar;
     String urls;
     boolean is_play;
+    MediaController mediaC;
     Handler handler;
 
     @Override
@@ -24,7 +27,9 @@ public class VideoPlay extends AppCompatActivity {
         init();
 
 
+
     }
+
 
     private void init() {
         videoView = (VideoView) findViewById(R.id.view);
@@ -33,6 +38,12 @@ public class VideoPlay extends AppCompatActivity {
 
         urls = getIntent().getStringExtra("video");
         videoView.setVideoPath(urls);
+
+        mediaC  = new MediaController(this);
+
+        videoView.setMediaController(mediaC);
+        mediaC.setAnchorView(videoView);
+
         videoView.start();
         is_play = true;
         imgg.setImageResource(R.drawable.pause);
@@ -44,6 +55,7 @@ public class VideoPlay extends AppCompatActivity {
     }
 
     private void updateseekbar() {
+        handler= new Handler();
         handler.postDelayed(updatetime, 100);
 
 
@@ -83,14 +95,14 @@ public class VideoPlay extends AppCompatActivity {
         }
     };
 
-    public  void  toogle(){
+    public  void  toogle(View playPause){
 
         if (is_play){
 
 
 videoView.pause();
 is_play=false;
-imgg.setImageResource(R.drawable.play);
+            (imgg).setImageResource(R.drawable.play);
 
         }
         else if (is_play==false){
@@ -98,7 +110,7 @@ imgg.setImageResource(R.drawable.play);
             videoView.start();
             updateseekbar();
             is_play=true;
-            imgg.setImageResource(R.drawable.pause);
+            (imgg).setImageResource(R.drawable.pause);
 
         }
 
