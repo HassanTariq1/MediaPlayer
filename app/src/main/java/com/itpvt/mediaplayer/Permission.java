@@ -40,13 +40,24 @@ public class Permission extends AppCompatActivity {
             startActivity(in);
             finish();
         }
+        if (ContextCompat.checkSelfPermission(Permission.this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(Permission.this, "You have already granted this permission!",
+                    Toast.LENGTH_SHORT).show();
 
+            Intent in = new Intent(Permission.this, MainActivity.class);
+            startActivity(in);
+            finish();
 
+        }
         else
 
     {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, 10);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 10);
         }
     }
 
@@ -59,6 +70,16 @@ public class Permission extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             {
                 requestPermissions(new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, 10);
+            }
+        }else {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        if (!(ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+            {
+                requestPermissions(new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 10);
             }
         }else {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
