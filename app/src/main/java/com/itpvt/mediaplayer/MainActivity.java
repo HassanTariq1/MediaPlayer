@@ -26,14 +26,14 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView.LayoutManager manager;
     private static final int REQUEST_CODE = 1;;
-ArrayList<VideoModel> arraycycle;
+    ArrayList<VideoModel> arraycycle;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        verifyPermissions();
 
 
 
@@ -104,7 +104,7 @@ cur= getApplicationContext().getContentResolver().query(uri,protection,null,null
 
 
 
-column_index=cur.getColumnIndexOrThrow(MediaStore.MediaColumns.TITLE);
+column_index=cur.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
 
 //column_folder=cur.getColumnIndexOrThrow(MediaStore.Video.Media.BUCKET_DISPLAY_NAME);
 //column_id= cur.getColumnIndexOrThrow(MediaStore.Video.Media._ID);

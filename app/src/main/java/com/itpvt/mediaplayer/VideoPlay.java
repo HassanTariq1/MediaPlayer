@@ -62,7 +62,7 @@ btn.setOnClickListener(new View.OnClickListener() {
 
     private void init() {
         videoView = (VideoView) findViewById(R.id.view);
-        imgg = (ImageView) findViewById(R.id.imag);
+      //  imgg = (ImageView) findViewById(R.id.imag);
       //  seekBar = (SeekBar) findViewById(R.id.seek);
 
         urls = getIntent().getStringExtra("video");
