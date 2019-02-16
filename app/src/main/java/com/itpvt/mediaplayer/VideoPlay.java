@@ -80,8 +80,8 @@ btn.setOnClickListener(new View.OnClickListener() {
         set(this);
 
 
-        is_play = true;
-        imgg.setImageResource(R.drawable.pause);
+//        is_play = true;
+//        imgg.setImageResource(R.drawable.pause);
 
 
        // updateseekbar();
