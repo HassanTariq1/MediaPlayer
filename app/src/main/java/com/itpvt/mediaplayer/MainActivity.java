@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
-        manager = new GridLayoutManager(getApplicationContext(), 1);
+        manager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(manager);
         arraycycle = new ArrayList<>();
 
