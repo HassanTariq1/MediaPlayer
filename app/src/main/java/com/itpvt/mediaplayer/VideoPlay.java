@@ -84,73 +84,73 @@ btn.setOnClickListener(new View.OnClickListener() {
         imgg.setImageResource(R.drawable.pause);
 
 
-        updateseekbar();
+       // updateseekbar();
 
 
     }
 
-    private void updateseekbar() {
-        handler= new Handler();
-        handler.postDelayed(updatetime, 100);
+//    private void updateseekbar() {
+//        handler= new Handler();
+//        handler.postDelayed(updatetime, 100);
+//
+//
+//    }
 
-
-    }
-
-    public Runnable updatetime = new Runnable() {
-        @Override
-        public void run() {
-
-
-            seekBar.setProgress(videoView.getCurrentPosition());
-            seekBar.setMax(videoView.getDuration());
-            handler.postDelayed(this, 100);
-
-            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
-
-                }
-
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
-                    handler.removeCallbacks(updatetime);
-                }
-
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) {
-                    handler.removeCallbacks(updatetime);
-
-                    videoView.seekTo(seekBar.getProgress());
-
-                    updateseekbar();
-                }
-            });
-
-        }
-    };
-
-    public  void  toogle(View playPause){
-
-        if (is_play){
-
-
-videoView.pause();
-is_play=false;
-            (imgg).setImageResource(R.drawable.play);
-
-        }
-        else if (is_play==false){
-
-            videoView.start();
-            updateseekbar();
-            is_play=true;
-            (imgg).setImageResource(R.drawable.pause);
-
-        }
-
-
-
-    }
+//    public Runnable updatetime = new Runnable() {
+//        @Override
+//        public void run() {
+//
+//
+//            seekBar.setProgress(videoView.getCurrentPosition());
+//            seekBar.setMax(videoView.getDuration());
+//            handler.postDelayed(this, 100);
+//
+//            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//                @Override
+//                public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+//
+//
+//                }
+//
+//                @Override
+//                public void onStartTrackingTouch(SeekBar seekBar) {
+//                    handler.removeCallbacks(updatetime);
+//                }
+//
+//                @Override
+//                public void onStopTrackingTouch(SeekBar seekBar) {
+//                    handler.removeCallbacks(updatetime);
+//
+//                    videoView.seekTo(seekBar.getProgress());
+//
+//                    updateseekbar();
+//                }
+//            });
+//
+//        }
+//    };
+//
+//    public  void  toogle(View playPause){
+//
+//        if (is_play){
+//
+//
+//videoView.pause();
+//is_play=false;
+//            (imgg).setImageResource(R.drawable.play);
+//
+//        }
+//        else if (is_play==false){
+//
+//            videoView.start();
+//            updateseekbar();
+//            is_play=true;
+//            (imgg).setImageResource(R.drawable.pause);
+//
+//        }
+//
+//
+//
+//    }
 
 }
