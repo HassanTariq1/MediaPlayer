@@ -2,16 +2,21 @@ package com.itpvt.mediaplayer;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -20,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
     RecyclerView.LayoutManager manager;
-
+    private static final int REQUEST_CODE = 1;;
 ArrayList<VideoModel> arraycycle;
 
 
@@ -29,37 +34,52 @@ ArrayList<VideoModel> arraycycle;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView=(RecyclerView)findViewById(R.id.recycler);
 
-        manager= new GridLayoutManager(getApplicationContext(),1);
-recyclerView.setLayoutManager(manager);
-arraycycle= new ArrayList<>();
 
-fetchVideos();
 
-        int Permission_All = 1;
 
-        String[] Permissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.WRITE_SETTINGS};
-        if(!hasPermissions(this, Permissions)){
-            ActivityCompat.requestPermissions(this, Permissions, Permission_All);
-        }
+        recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
+        manager = new GridLayoutManager(getApplicationContext(), 1);
+        recyclerView.setLayoutManager(manager);
+        arraycycle = new ArrayList<>();
+
+        fetchVideos();
 
 
     }
 
 
-    public static boolean hasPermissions(Context context, String... permissions){
+    private void verifyPermissions(){
+        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA};
 
-        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.M && context!=null && permissions!=null){
-            for(String permission: permissions){
-                if(ActivityCompat.checkSelfPermission(context, permission)!= PackageManager.PERMISSION_GRANTED){
-                    return  false;
-                }
-            }
+        if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                permissions[0]) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                permissions[1]) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                permissions[2]) == PackageManager.PERMISSION_GRANTED){
+            Intent i = new Intent(MainActivity.this, MainActivity.class);
+            startActivity(i);
+
+        }else{
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    permissions,
+                    REQUEST_CODE);
         }
-        return true;
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        verifyPermissions();
+    }
+
+
+
+
+
 
 
 
