@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+
+
+
+    <item
+
+        android:id="@+id/net"
+        android:title="Network Search"
+
+
+        />
+    <item android:title="View"
+        android:id="@+id/view">
+<menu  />
+
+    </item>
+
+
+    <item
+
+        android:id="@+id/sec"
+        android:title="Select"
+
+
+        />
+    <item
+
+        android:id="@+id/set"
+        android:title="Settings"
+
+
+        />
+    <item
+
+        android:id="@+id/help"
+        android:title="Help">
+
+<menu  />
+
+
+    </item>
+
+
+
+
+
+</menu>

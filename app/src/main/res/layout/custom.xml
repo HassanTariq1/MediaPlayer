@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:id="@+id/imgg"
             android:scaleType="fitXY"/>
-        
+
 
     </LinearLayout>
     

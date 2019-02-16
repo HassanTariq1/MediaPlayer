@@ -1,9 +1,14 @@
 package com.itpvt.mediaplayer;
 
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.SeekBar;
@@ -19,15 +24,38 @@ public class VideoPlay extends Swipper {
     boolean is_play;
     MediaController mediaC;
     Handler handler;
-
+Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_play);
 
+        Display display = ((WindowManager) getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
+        final int orientation = display.getOrientation();
+
+
+
         init();
 
+btn=(Button) findViewById(R.id.btnr);
 
+
+btn.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+
+        switch(orientation) {
+            case Configuration.ORIENTATION_PORTRAIT:
+                setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                break;
+            case Configuration.ORIENTATION_LANDSCAPE:
+                setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                break;
+        }
+
+
+    }
+});
 
     }
 
@@ -35,7 +63,7 @@ public class VideoPlay extends Swipper {
     private void init() {
         videoView = (VideoView) findViewById(R.id.view);
         imgg = (ImageView) findViewById(R.id.imag);
-        seekBar = (SeekBar) findViewById(R.id.seek);
+      //  seekBar = (SeekBar) findViewById(R.id.seek);
 
         urls = getIntent().getStringExtra("video");
         videoView.setVideoPath(urls);
@@ -46,7 +74,7 @@ public class VideoPlay extends Swipper {
 
         videoView.start();
 
-        Brightness(Orientation.CIRCULAR);
+        Brightness(Orientation.VERTICAL);
         Volume(Orientation.VERTICAL);
         Seek(Orientation.HORIZONTAL, videoView);
         set(this);

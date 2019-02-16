@@ -31,7 +31,7 @@ ArrayList<VideoModel> arraycycle;
 
         recyclerView=(RecyclerView)findViewById(R.id.recycler);
 
-        manager= new GridLayoutManager(getApplicationContext(), 2);
+        manager= new GridLayoutManager(getApplicationContext(),1);
 recyclerView.setLayoutManager(manager);
 arraycycle= new ArrayList<>();
 
@@ -81,7 +81,7 @@ cur= getApplicationContext().getContentResolver().query(uri,protection,null,null
 
 
 
-column_index=cur.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+column_index=cur.getColumnIndexOrThrow(MediaStore.MediaColumns.TITLE);
 
 //column_folder=cur.getColumnIndexOrThrow(MediaStore.Video.Media.BUCKET_DISPLAY_NAME);
 //column_id= cur.getColumnIndexOrThrow(MediaStore.Video.Media._ID);
